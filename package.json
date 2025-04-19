@@ -1,0 +1,22 @@
+{
+  "name": "error-handler",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/tufanrai/customError-Handler.git"
+  },
+  "author": "Tufan Rai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tufanrai/customError-Handler/issues"
+  },
+  "homepage": "https://github.com/tufanrai/customError-Handler#readme",
+  "description": "",
+  "dependencies": {
+    "mongoose": "^8.13.2"
+  }
+}
