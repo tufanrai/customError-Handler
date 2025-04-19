@@ -1,16 +1,12 @@
 const Users = require('../Schema/usersSchema.js')
 const errorHandlerHelper = require('../Helper/errorHandlerHelper.js')
+const asyncHandler = require('../Helper/asyncHandler.js')
 
-const homePageController = async (req, res) =>{
-    try{
+const homePageController = asyncHandler(async (req, res) =>{
         res.send('This is a home page')
-    } catch(error) {
-        console.log(error)
-    }
-}
+})
 
-const displayData = async (req, res, next) => {
-    try{
+const displayData = asyncHandler(async (req, res, next) => {
         const users = await Users.find()
         if(!users){
             const message = 'No data are present'
@@ -19,24 +15,15 @@ const displayData = async (req, res, next) => {
         }
         console.log(users)
         res.send("all the users' detail are displayed")
+})
 
-    } catch (error) {
-        next(error)
-    }
-}
-
-const insertData = async (req,res,next) => {
-    try{
+const insertData = asyncHandler(async (req,res,next) => {
         const newUser = await Users.create(req.body)
         console.log(newUser)
         res.send('new user added')
-    } catch (error) {
-        next(error)
-    }
-}
+})
 
-const displayDataById = async (req,res,next) => {
-    try{
+const displayDataById = asyncHandler(async (req,res,next) => {
          const user = await Users.findById(req.params.id)
          if(!user) {
             const message = `user with ${req.params.id} is not found.`
@@ -45,20 +32,13 @@ const displayDataById = async (req,res,next) => {
          }
          console.log(user)
          res.send(`the person with ${req.params.id} exists.`)
-    } catch (error) {
-        next(error)
-    }
-}
+})
 
-const errorHandler = async (req,res,next) => {
-    try{
+const errorHandler = asyncHandler(async (req,res,next) => {
         const message = 'The page you are looking for doesnot exist'
         const error = new errorHandlerHelper(message, 404)
         throw error
-    } catch (error) {
-        next(error)
-    }
-}
+})
 
 module.exports = {
     homePageController,
